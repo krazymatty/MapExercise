@@ -16,19 +16,20 @@ public class MapExerciseApplication {
 
 		printResults(1, winningHand, hand);
 		replacePlayer(winningHand, hand, "Rita Repulsa", "Zordon");
+		printResults(2, winningHand, hand);
 		addWin(winningHand, hand, "He Man");
+		printResults(3, winningHand, hand);
 		removePlayer(winningHand, hand, "He Man");
+		printResults(4, winningHand, hand);
 	}
 
 	private static void addWin(String winningHand, Map<String, Integer> hand, String player) {
 		int ctr = hand.get(player);
 		hand.put(player, ++ctr);
-		printResults(3, winningHand, hand);
 	}
 
 	private static void removePlayer(String winningHand, Map<String, Integer> hand, String removePlayer) {
 		hand.remove(removePlayer);
-		printResults(4, winningHand, hand);
 	}
 
 	private static void replacePlayer(String winningHand, Map<String, Integer> hand, String oldPlayer,
@@ -36,7 +37,6 @@ public class MapExerciseApplication {
 		int ctr = hand.get(oldPlayer);
 		hand.remove(oldPlayer);
 		hand.put(newPlayer, ctr);
-		printResults(2, winningHand, hand);
 	}
 
 	private static void printResults(Integer task, String winningHand, Map<String, Integer> hand) {
