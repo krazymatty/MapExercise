@@ -5,25 +5,25 @@ import java.util.Set;
 
 public class MapExerciseApplication {
 
-	// instatiate new hashset
-
 	public static void main(String[] args) {
-		// extract the data from the CSV
 		String winningHand = "FLUSH";
 		String fileName = "PokerHands.csv";
+		Map<String, Integer> pokerRound = extractDataFromCSV(fileName, winningHand);
 
-		Map<String, Integer> hand = extractDataFromCSV(fileName, winningHand);
-
-		printResults(1, winningHand, hand);
-		replacePlayer(winningHand, hand, "Rita Repulsa", "Zordon");
-		printResults(2, winningHand, hand);
-		addWin(winningHand, hand, "He Man");
-		printResults(3, winningHand, hand);
-		removePlayer(winningHand, hand, "He Man");
-		printResults(4, winningHand, hand);
+		//Task 1
+		printResults(1, winningHand, pokerRound);
+		//Task 2
+		replacePlayer(pokerRound, "Rita Repulsa", "Zordon");
+		printResults(2, winningHand, pokerRound);
+		//Task 3
+		addToCount(pokerRound, "He Man");
+		printResults(3, winningHand, pokerRound);
+		//Task 4
+		removePlayer(winningHand, pokerRound, "He Man");
+		printResults(4, winningHand, pokerRound);
 	}
 
-	private static void addWin(String winningHand, Map<String, Integer> hand, String player) {
+	private static void addToCount(Map<String, Integer> hand, String player) {
 		int ctr = hand.get(player);
 		hand.put(player, ++ctr);
 	}
@@ -32,7 +32,7 @@ public class MapExerciseApplication {
 		hand.remove(removePlayer);
 	}
 
-	private static void replacePlayer(String winningHand, Map<String, Integer> hand, String oldPlayer,
+	private static void replacePlayer(Map<String, Integer> hand, String oldPlayer,
 			String newPlayer) {
 		int ctr = hand.get(oldPlayer);
 		hand.remove(oldPlayer);

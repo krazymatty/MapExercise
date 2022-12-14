@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class FileService {
 	Map<String, Integer> round = new HashMap<>();
-	String[] pokerHand = null;
+	String[] playerHand = null;
 
 	public void readFromFile(String filename, String winningHand) {
 		String line = null;
@@ -17,13 +17,13 @@ public class FileService {
 			reader.readLine();
 
 			while ((line = reader.readLine()) != null) {
-				pokerHand = line.split(",");
+				playerHand = line.split(",");
 
-				if (pokerHand[1].equals(winningHand)) {
-					setFlushCounter("Patrick Stewart");
-					setFlushCounter("Rita Repulsa");
-					setFlushCounter("He Man");
-					setFlushCounter("TJ Hooker");
+				if (playerHand[1].equals(winningHand)) {
+					setInitCounter("Patrick Stewart");
+					setInitCounter("Rita Repulsa");
+					setInitCounter("He Man");
+					setInitCounter("TJ Hooker");
 				}
 			}
 
@@ -35,13 +35,13 @@ public class FileService {
 		}
 	}
 
-	private void setFlushCounter(String name) {
-		if (pokerHand[0].equals(name)) {
-			if ((round.get(pokerHand[0])) == null) {
-				round.put(pokerHand[0], 1);
+	private void setInitCounter(String playerName) {
+		if (playerHand[0].equals(playerName)) {
+			if ((round.get(playerHand[0])) == null) {
+				round.put(playerHand[0], 1);
 			} else {
-				int ctr = round.get(pokerHand[0]);
-				round.put(pokerHand[0], ++ctr);
+				int ctr = round.get(playerHand[0]);
+				round.put(playerHand[0], ++ctr);
 			}
 		}
 	}
