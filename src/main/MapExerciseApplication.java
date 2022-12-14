@@ -13,24 +13,34 @@ public class MapExerciseApplication {
 		String fileName = "PokerHands.csv";
 
 		Map<String, Integer> hand = extractDataFromCSV(fileName, winningHand);
-		
+
 		printResults(1, winningHand, hand);
-		
-		int ritaR = hand.get("Rita Repulsa");
-		hand.remove("Rita Repulsa");
-		hand.put("Zordon", ritaR);
-		printResults(2, winningHand, hand);
-		
-		int heMan = hand.get("He Man");
-		hand.put("He Man", ++heMan);
+		replacePlayer(winningHand, hand, "Rita Repulsa", "Zordon");
+		addWin(winningHand, hand, "He Man");
+		removePlayer(winningHand, hand, "He Man");
+	}
+
+	private static void addWin(String winningHand, Map<String, Integer> hand, String player) {
+		int ctr = hand.get(player);
+		hand.put(player, ++ctr);
 		printResults(3, winningHand, hand);
-		
-		hand.remove("He Man");
+	}
+
+	private static void removePlayer(String winningHand, Map<String, Integer> hand, String removePlayer) {
+		hand.remove(removePlayer);
 		printResults(4, winningHand, hand);
 	}
 
+	private static void replacePlayer(String winningHand, Map<String, Integer> hand, String oldPlayer,
+			String newPlayer) {
+		int ctr = hand.get(oldPlayer);
+		hand.remove(oldPlayer);
+		hand.put(newPlayer, ctr);
+		printResults(2, winningHand, hand);
+	}
+
 	private static void printResults(Integer task, String winningHand, Map<String, Integer> hand) {
-		System.out.println("After Task "+ task +": " + winningHand);
+		System.out.println("After Task " + task + ": " + winningHand);
 		hand.forEach((key, value) -> System.out.println(key + ": " + value));
 		System.out.println("");
 	}
